@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,11 +17,29 @@
    
 
     @include('layouts.nav')
+    @if($flash = session('message'))
+    
+      <div class="alert alert-success" role= 'alert'>
+        <center>
+        {{$flash}} {{ Auth::user()->name}} 
+        </center>
+      </div>    
+    @endif
 
     @include('layouts.header')
+    <div class="container">
+        <div class="row">
+           <div class="col-sm-8 blog-main">
+              @yield('content')
+            </div>
+              @include('layouts.sidebar')
 
-    @yield('content')
+      </div>
+      
+    </div>
+    
 
+  
     @include('layouts.footer')
 
   </body>
