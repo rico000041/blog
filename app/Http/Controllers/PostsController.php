@@ -13,38 +13,34 @@ use App\Tag;
 class PostsController extends Controller
 {
     
+    public $post;
+
 
     public function __construct(){
         $this->middleware('auth')->except(['index','show']);
     }
+
     public function index(Posts $posts){
-
-
-       
-       /* $posts = Post::latest()
-        ->filter(request(['month','year']))
-        ->get();*/
-
-        /*$posts = Post::latest();*/
+        
 
         $archives = Post::archives();
-        $posts = Post::all();
 
 
-/*
        
 
         if($month = request('month')){
-            $posts->whereMonth('created_at',Carbon::parse($month)->month);
+           $post = Post::whereMonth('created_at','=',Carbon::parse($month)->month)->get();
         }
         if($year = request('year')){
-            $posts->whereYear('created_at',$year);
-        }*/
-    	
+           $post = Post::whereYear('created_at','=',$year)->get();
+        }
+        
+       
+       
 
+        $posts = Post::latest()->get();
 
-
-
+       
         
       /*  $posts = $posts->get();
 */

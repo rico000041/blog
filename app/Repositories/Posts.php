@@ -19,10 +19,16 @@ class Posts{
 
 			//return all posts
 			//
+			//
+			
+			
 			return Post::all();
+
+
 			
 	}
 	public function find(){
+		
 
 	}
 

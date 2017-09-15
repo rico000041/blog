@@ -4,6 +4,7 @@ namespace App;
 use Carbon\Carbon;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Post;
 
 class Post extends Model
 {
@@ -21,17 +22,14 @@ class Post extends Model
 
     public function scopeFilter($query, $filters){
 
-
-
-        if($month = $filters(request(['month']))){
-            $query->whereMonth('created_at',Carbon::parse($month)->month)->get();
+        if($month = $filters(['month'])){
+            $query->whereMonth('created_at','=',Carbon::parse($month)->month);
         }
-        if($year = $filters(request(['year']))){
-            $query->whereYear('created_at',$year)->get();
+        if($year = $filters['year']){
+            $query->whereYear('created_at','=',$year);
         }
 
-
-        //$posts = $posts->get();
+        $query = $query->get();
 
     }
     public static function archives(){
